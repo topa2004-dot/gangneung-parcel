@@ -1,186 +1,199 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#F39A32">
-<title>강릉샌드 · 강원옥 택배 접수</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f8f5ef">
+<title>강릉 택배 주문</title>
 <style>
-:root{--orange:#ef9630;--ink:#252525;--muted:#777;--line:#e9e5df;--bg:#f7f5f1}
+:root{--ink:#292722;--muted:#77736a;--line:#e7e1d7;--paper:#fff;--bg:#f8f5ef;--accent:#315c49;--soft:#eef3ee}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
-.wrap{max-width:620px;margin:auto;padding:18px 14px 38px}
-.card{background:#fff;border-radius:20px;padding:23px 19px;margin-bottom:14px;box-shadow:0 8px 28px rgba(0,0,0,.045)}
-.brand{text-align:center;padding:28px 18px 24px}
-.logo{width:60px;height:60px;margin:0 auto 14px;border-radius:18px;background:#fff0df;display:grid;place-items:center;font-size:30px}
-h1{font-size:25px;line-height:1.4;letter-spacing:-1px;margin:0}
-h2{font-size:17px;letter-spacing:-.4px;margin:0 0 15px}
-.sub{font-size:14px;color:var(--muted);line-height:1.7;margin:10px 0 0}
-.product{display:flex;align-items:center;gap:10px;padding:14px 0;border-bottom:1px solid var(--line)}
-.product:last-child{border-bottom:0;padding-bottom:0}
-.pinfo{flex:1;min-width:0}.pname{font-size:14px;font-weight:700;line-height:1.5}.price{font-size:13px;color:var(--muted);margin-top:3px}
-.qty{display:flex;align-items:center;gap:9px}.qty button{width:36px;height:36px;border:1px solid #ddd;border-radius:10px;background:#fff;font-size:20px;cursor:pointer}.qty button:disabled{opacity:.35}.qty output{min-width:18px;text-align:center;font-weight:700}
-.field{display:block;margin-bottom:14px}.field:last-child{margin-bottom:0}.field span{display:block;font-size:13px;font-weight:700;margin-bottom:7px}
-input,textarea{width:100%;font:inherit;font-size:15px;padding:12px 13px;border:1px solid #ddd8d0;border-radius:10px;background:#fff;outline:none}
-input:focus,textarea:focus{border-color:var(--orange)}textarea{resize:vertical;min-height:80px}
-.summary{display:flex;justify-content:space-between;gap:12px;padding:9px 0;font-size:14px}.summary span{color:#666}.summary strong{text-align:right}
-.total{border-top:1px solid var(--line);margin-top:7px;padding-top:16px;font-size:17px}.total strong{font-size:24px;color:#cf7413}
-.bank{background:#fff5e8;border-radius:12px;padding:15px;margin-top:14px;font-size:14px;line-height:1.8;color:#553819}
-.bank-title{font-weight:750;font-size:15px;margin-bottom:5px}.account{font-size:17px;font-weight:800;letter-spacing:.2px;color:#39250f}
-.hint{font-size:12px;color:#888;line-height:1.65;margin:12px 0 0}
-.primary,.secondary{display:block;width:100%;border-radius:13px;padding:16px 12px;text-align:center;cursor:pointer;font-size:16px;font-weight:750}
-.primary{border:0;background:var(--orange);color:white;margin-top:18px}.secondary{margin-top:10px;border:1px solid #ded8cf;background:#fff;color:#333;font-size:14px;padding:13px}
-.error{display:none;color:#b42318;font-size:13px;line-height:1.5;margin:12px 0 0}
-.notice{text-align:center;color:#888;font-size:12px;line-height:1.7;padding:4px 10px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;line-height:1.5}
+main{max-width:680px;margin:0 auto;padding:22px 15px 44px}
+header{text-align:center;padding:16px 8px 22px}
+.eyebrow{font-size:12px;letter-spacing:.18em;color:var(--muted)}
+h1{font-size:27px;margin:7px 0 5px;letter-spacing:-.04em}
+header p{margin:0;color:var(--muted);font-size:14px}
+section{background:var(--paper);border:1px solid var(--line);border-radius:17px;padding:18px;margin:12px 0}
+h2{font-size:17px;margin:0 0 14px;letter-spacing:-.03em}
+.products{display:grid;gap:10px}
+.product{display:flex;align-items:center;gap:12px;border:1px solid var(--line);border-radius:12px;padding:12px}
+.product-info{flex:1;min-width:0}
+.product-name{font-weight:700;font-size:15px}
+.price{font-size:13px;color:var(--muted);margin-top:2px}
+.qty{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.qty button{width:32px;height:32px;border:1px solid var(--line);background:#fff;border-radius:9px;font-size:19px;color:var(--ink);cursor:pointer}
+.qty output{min-width:16px;text-align:center;font-weight:700}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.field{display:flex;flex-direction:column;gap:6px}
+.field.full{grid-column:1/-1}
+label{font-size:13px;font-weight:650}
+input,textarea{font:inherit;font-size:15px;padding:12px;border:1px solid var(--line);border-radius:10px;width:100%;background:#fff;color:var(--ink)}
+input:focus,textarea:focus{outline:2px solid #cbd9cf;border-color:var(--accent)}
+.summary-row{display:flex;justify-content:space-between;gap:12px;margin:8px 0;font-size:14px}
+.summary-row.total{border-top:1px solid var(--line);padding-top:13px;margin-top:13px;font-weight:800;font-size:19px}
+.small{font-size:12px;color:var(--muted)}
+.bank{background:var(--soft);border-radius:12px;padding:13px;font-size:14px}
+.bank strong{font-size:16px}
+button.primary{display:block;width:100%;padding:15px;border:0;border-radius:12px;background:var(--accent);color:#fff;font-size:16px;font-weight:750;cursor:pointer}
+button.secondary{display:block;width:100%;padding:13px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);font-size:14px;font-weight:700;cursor:pointer;margin-top:9px}
+.note{font-size:12px;color:var(--muted);margin:11px 2px 0}
+#status{font-size:13px;color:#9b3c2d;margin-top:10px;display:none}
+@media(max-width:460px){main{padding:14px 11px 32px}section{padding:15px}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}h1{font-size:25px}}
 </style>
 </head>
 <body>
-<main class="wrap">
-<section class="card brand">
-  <div class="logo" aria-hidden="true">📦</div>
-  <h1>강릉샌드 · 강원옥<br>택배 접수</h1>
-  <p class="sub">상품과 수량을 선택하고 배송 정보를 입력해 주세요.<br>총 결제 예정 금액이 자동으로 계산됩니다.</p>
-</section>
+<main>
+<header>
+  <div class="eyebrow">GANGNEUNG · PARCEL ORDER</div>
+  <h1>강릉 택배 주문</h1>
+  <p>상품과 수량을 선택하고 배송 정보를 입력해 주세요.</p>
+</header>
 
-<section class="card">
-  <h2>① 상품 선택</h2>
-  <div id="products"></div>
-</section>
-
-<section class="card">
-  <h2>② 보내는 분 정보</h2>
-  <label class="field"><span>보내는 분 이름 *</span><input id="senderName" autocomplete="name" placeholder="이름 입력"></label>
-  <label class="field"><span>보내는 분 전화번호 *</span><input id="senderPhone" type="tel" autocomplete="tel" placeholder="010-0000-0000"></label>
-</section>
-
-<section class="card">
-  <h2>③ 받는 분 정보</h2>
-  <label class="field"><span>받는 분 이름 *</span><input id="receiverName" placeholder="받는 분 이름"></label>
-  <label class="field"><span>받는 분 전화번호 *</span><input id="receiverPhone" type="tel" placeholder="010-0000-0000"></label>
-  <label class="field"><span>받는 분 주소 *</span><textarea id="receiverAddress" autocomplete="street-address" placeholder="도로명 주소와 상세 주소를 입력해 주세요"></textarea></label>
-</section>
-
-<section class="card">
-  <h2>④ 주문 금액 및 계좌 안내</h2>
-  <div class="summary"><span>상품 수량</span><strong id="itemCount">0개</strong></div>
-  <div class="summary"><span>상품 금액</span><strong id="productTotal">0원</strong></div>
-  <div class="summary"><span>택배비</span><strong id="shippingCost">4,000원</strong></div>
-  <div class="summary total"><span>총 결제 예정 금액</span><strong id="grandTotal">4,000원</strong></div>
-  <div class="bank">
-    <div class="bank-title">🏦 계좌이체 안내 · 신한은행</div>
-    <div class="account">110-243-851110</div>
-    <div>예금주: 홍**</div>
-    <p class="hint">입금 전 주문 내용과 총액을 확인해 주세요. 주문 접수 문자 전송과 실제 입금은 별도입니다.</p>
+<section>
+  <h2>01. 상품 선택</h2>
+  <div class="products" id="products">
+    <div class="product" data-name="강릉샌드 커피" data-price="18000"><div class="product-info"><div class="product-name">강릉샌드 · 커피</div><div class="price">18,000원 / 박스</div></div><div class="qty"><button type="button" aria-label="강릉샌드 커피 수량 줄이기" data-delta="-1">−</button><output>0</output><button type="button" aria-label="강릉샌드 커피 수량 늘리기" data-delta="1">+</button></div></div>
+    <div class="product" data-name="강릉샌드 딸기" data-price="18000"><div class="product-info"><div class="product-name">강릉샌드 · 딸기</div><div class="price">18,000원 / 박스</div></div><div class="qty"><button type="button" aria-label="강릉샌드 딸기 수량 줄이기" data-delta="-1">−</button><output>0</output><button type="button" aria-label="강릉샌드 딸기 수량 늘리기" data-delta="1">+</button></div></div>
+    <div class="product" data-name="강릉샌드 옥수수" data-price="18000"><div class="product-info"><div class="product-name">강릉샌드 · 옥수수</div><div class="price">18,000원 / 박스</div></div><div class="qty"><button type="button" aria-label="강릉샌드 옥수수 수량 줄이기" data-delta="-1">−</button><output>0</output><button type="button" aria-label="강릉샌드 옥수수 수량 늘리기" data-delta="1">+</button></div></div>
+    <div class="product" data-name="강원옥 찹쌀떡 플레인" data-price="18000"><div class="product-info"><div class="product-name">강원옥 찹쌀떡 · 플레인</div><div class="price">18,000원 / 박스</div></div><div class="qty"><button type="button" aria-label="강원옥 플레인 수량 줄이기" data-delta="-1">−</button><output>0</output><button type="button" aria-label="강원옥 플레인 수량 늘리기" data-delta="1">+</button></div></div>
+    <div class="product" data-name="강원옥 찹쌀떡 흑임자" data-price="18000"><div class="product-info"><div class="product-name">강원옥 찹쌀떡 · 흑임자</div><div class="price">18,000원 / 박스</div></div><div class="qty"><button type="button" aria-label="강원옥 흑임자 수량 줄이기" data-delta="-1">−</button><output>0</output><button type="button" aria-label="강원옥 흑임자 수량 늘리기" data-delta="1">+</button></div></div>
+    <div class="product" data-name="딸기모찌" data-price="22000"><div class="product-info"><div class="product-name">딸기모찌</div><div class="price">22,000원 / 박스</div></div><div class="qty"><button type="button" aria-label="딸기모찌 수량 줄이기" data-delta="-1">−</button><output>0</output><button type="button" aria-label="딸기모찌 수량 늘리기" data-delta="1">+</button></div></div>
   </div>
-  <p class="hint">택배비 4,000원이 별도 부과됩니다. 주문 내용 확인 후 입금해 주세요.</p>
-  <p class="error" id="errorMessage" role="alert"></p>
-  <button class="primary" id="sendButton" type="button">📱 문자로 택배 접수하기</button>
-  <button class="secondary" id="copyButton" type="button">주문 내용 복사하기</button>
-  <p class="hint">문자 앱이 열리면 받는 사람과 주문 내용을 확인한 뒤 직접 전송해 주세요. 휴대폰이나 브라우저에 따라 문자 앱 연결 방식이 다를 수 있습니다.</p>
 </section>
-<p class="notice">강릉샌드 · 강원옥 택배 접수<br>접수 문자: 010-4868-0599</p>
+
+<section>
+  <h2>02. 보내는 분</h2>
+  <div class="fields">
+    <div class="field"><label for="senderName">이름</label><input id="senderName" autocomplete="name" placeholder="보내는 분 이름"></div>
+    <div class="field"><label for="senderPhone">연락처</label><input id="senderPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000"></div>
+  </div>
+</section>
+
+<section>
+  <h2>03. 받는 분</h2>
+  <div class="fields">
+    <div class="field"><label for="recipientName">이름</label><input id="recipientName" placeholder="받는 분 이름" autocomplete="shipping name"></div>
+    <div class="field"><label for="recipientPhone">연락처</label><input id="recipientPhone" type="tel" inputmode="tel" placeholder="010-0000-0000" autocomplete="shipping tel"></div>
+    <div class="field full"><label for="address">배송 주소</label><input id="address" placeholder="도로명 주소와 상세 주소" autocomplete="shipping street-address"></div>
+    <div class="field full"><label for="memo">배송 요청사항 (선택)</label><input id="memo" placeholder="예: 부재 시 문 앞에 놓아주세요"></div>
+  </div>
+</section>
+
+<section>
+  <h2>04. 결제 금액 확인</h2>
+  <div class="summary-row"><span>선택 상품 수량</span><strong id="count">0개</strong></div>
+  <div class="summary-row"><span>상품 금액</span><strong id="subtotal">0원</strong></div>
+  <div class="summary-row"><span>택배비</span><strong id="shipping">4,000원</strong></div>
+  <div class="summary-row total"><span>보내실 금액</span><strong id="total">4,000원</strong></div>
+  <div class="bank"><div>입금 계좌</div><strong>신한은행 110-243-851110</strong><br>예금주: 홍**<p class="small">택배비 4,000원 별도 · 상품 선택 후 총금액을 확인해 주세요.</p></div>
+</section>
+
+<section>
+  <h2>05. 주문 문자 만들기</h2>
+  <p class="small">아래 버튼을 눌러야 문자 앱이 열립니다. 주문 내용과 금액이 문자에 자동으로 입력되며, 내용을 확인한 뒤 직접 전송해 주세요.</p>
+  <button type="button" class="primary" id="smsBtn">주문 문자 작성하기</button>
+  <button type="button" class="secondary" id="copyBtn">주문 내용 복사하기</button>
+  <div id="status" role="status"></div>
+  <p class="note">문자 수신 번호: 010-4868-0599</p>
+</section>
 </main>
 <script>
-(function(){
-"use strict";
-const PRODUCTS=[
- {name:"강릉샌드 - 커피",price:18000},
- {name:"강릉샌드 - 딸기",price:18000},
- {name:"강릉샌드 - 옥수수",price:18000},
- {name:"강원옥 찹쌀떡 - 플레인",price:18000},
- {name:"강원옥 찹쌀떡 - 흑임자",price:18000},
- {name:"딸기모찌",price:22000}
-];
-const SHIPPING_FEE=4000;
-const SMS_NUMBER="01048680599";
-const quantities=PRODUCTS.map(function(){return 0;});
-const $=function(id){return document.getElementById(id);};
-const won=function(n){return n.toLocaleString("ko-KR")+"원";};
+const SMS_NUMBER = "01048680599";
+const SHIPPING = 4000;
+const won = n => n.toLocaleString("ko-KR") + "원";
+const productRows = [...document.querySelectorAll(".product")];
 
-PRODUCTS.forEach(function(product,index){
- const row=document.createElement("div");
- row.className="product";
- const info=document.createElement("div"); info.className="pinfo";
- const name=document.createElement("div"); name.className="pname"; name.textContent=product.name;
- const price=document.createElement("div"); price.className="price"; price.textContent=won(product.price)+" / 개";
- info.appendChild(name); info.appendChild(price);
- const qty=document.createElement("div"); qty.className="qty";
- const minus=document.createElement("button"); minus.type="button"; minus.textContent="−"; minus.setAttribute("aria-label",product.name+" 수량 줄이기");
- const output=document.createElement("output"); output.textContent="0"; output.setAttribute("aria-live","polite");
- const plus=document.createElement("button"); plus.type="button"; plus.textContent="+"; plus.setAttribute("aria-label",product.name+" 수량 늘리기");
- minus.addEventListener("click",function(){quantities[index]=Math.max(0,quantities[index]-1);update();});
- plus.addEventListener("click",function(){quantities[index]++;update();});
- qty.appendChild(minus);qty.appendChild(output);qty.appendChild(plus);
- row.appendChild(info);row.appendChild(qty);$("products").appendChild(row);
-});
-
+function selectedProducts(){
+  return productRows.map(row => ({
+    name: row.dataset.name,
+    price: Number(row.dataset.price),
+    qty: Number(row.querySelector("output").textContent)
+  })).filter(p => p.qty > 0);
+}
 function totals(){
- const count=quantities.reduce(function(a,b){return a+b;},0);
- const subtotal=quantities.reduce(function(sum,q,i){return sum+q*PRODUCTS[i].price;},0);
- return {count:count,subtotal:subtotal,shipping:SHIPPING_FEE,total:subtotal+SHIPPING_FEE};
+  const items = selectedProducts();
+  const count = items.reduce((s,p)=>s+p.qty,0);
+  const subtotal = items.reduce((s,p)=>s+p.price*p.qty,0);
+  const shipping = count ? SHIPPING : 0;
+  return {items,count,subtotal,shipping,total:subtotal+shipping};
 }
-function update(){
- const rows=$("products").querySelectorAll(".product");
- rows.forEach(function(row,i){
-  row.querySelector("output").textContent=String(quantities[i]);
-  row.querySelector("button").disabled=quantities[i]===0;
- });
- const t=totals();
- $("itemCount").textContent=t.count+"개";
- $("productTotal").textContent=won(t.subtotal);
- $("shippingCost").textContent=won(t.shipping);
- $("grandTotal").textContent=won(t.total);
+function refresh(){
+  const t=totals();
+  document.getElementById("count").textContent=t.count+"개";
+  document.getElementById("subtotal").textContent=won(t.subtotal);
+  document.getElementById("shipping").textContent=won(t.shipping);
+  document.getElementById("total").textContent=won(t.total);
 }
-function val(id){return $(id).value.trim();}
-function makeOrderText(){
- const t=totals();
- const lines=[
-  "[강릉샌드 · 강원옥 택배 접수]","",
-  "보내는 분: "+val("senderName"),
-  "보내는 분 전화번호: "+val("senderPhone"),"",
-  "받는 분: "+val("receiverName"),
-  "받는 분 전화번호: "+val("receiverPhone"),
-  "받는 분 주소: "+val("receiverAddress"),"",
-  "[주문 상품]"
- ];
- PRODUCTS.forEach(function(p,i){lines.push(p.name+" ("+won(p.price)+") : "+quantities[i]+"개 = "+won(p.price*quantities[i]));});
- lines.push("","상품 수량 합계: "+t.count+"개","상품 금액: "+won(t.subtotal),"택배비: "+won(t.shipping),"총 결제 예정 금액: "+won(t.total),"","결제 방법: 계좌이체","신한은행 110-243-851110","예금주: 홍**");
- return lines.join("\n");
+productRows.forEach(row=>{
+  row.querySelectorAll("button").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      const out=row.querySelector("output");
+      out.textContent=Math.max(0,Number(out.textContent)+Number(btn.dataset.delta));
+      refresh();
+    });
+  });
+});
+function orderText(){
+  const t=totals();
+  const lines=[
+    "[강릉 택배 주문]",
+    "",
+    "[주문 상품]",
+    ...t.items.map(p=>`- ${p.name} ${p.qty}개 × ${won(p.price)} = ${won(p.qty*p.price)}`),
+    "",
+    `상품 금액: ${won(t.subtotal)}`,
+    `택배비: ${won(t.shipping)}`,
+    `총 입금 금액: ${won(t.total)}`,
+    "",
+    "[보내는 분]",
+    `이름: ${document.getElementById("senderName").value.trim()}`,
+    `연락처: ${document.getElementById("senderPhone").value.trim()}`,
+    "",
+    "[받는 분]",
+    `이름: ${document.getElementById("recipientName").value.trim()}`,
+    `연락처: ${document.getElementById("recipientPhone").value.trim()}`,
+    `주소: ${document.getElementById("address").value.trim()}`,
+    `배송 요청사항: ${document.getElementById("memo").value.trim() || "없음"}`,
+    "",
+    "[입금 계좌]",
+    "신한은행 110-243-851110",
+    "예금주: 홍**"
+  ];
+  return lines.join("\n");
 }
 function validate(){
- const error=$("errorMessage");
- const fields=[["senderName","보내는 분 이름"],["senderPhone","보내는 분 전화번호"],["receiverName","받는 분 이름"],["receiverPhone","받는 분 전화번호"],["receiverAddress","받는 분 주소"]];
- if(totals().count===0){error.textContent="상품을 한 개 이상 선택해 주세요.";error.style.display="block";return false;}
- for(let i=0;i<fields.length;i++){
-  const el=$(fields[i][0]);
-  if(!el.value.trim()){error.textContent=fields[i][1]+"을(를) 입력해 주세요.";error.style.display="block";el.focus();return false;}
- }
- error.style.display="none";return true;
+  const t=totals();
+  const fields=["senderName","senderPhone","recipientName","recipientPhone","address"];
+  const missing=fields.find(id=>!document.getElementById(id).value.trim());
+  const status=document.getElementById("status");
+  if(!t.count){status.textContent="상품을 한 개 이상 선택해 주세요.";status.style.display="block";return false;}
+  if(missing){document.getElementById(missing).focus();status.textContent="보내는 분과 받는 분의 정보를 모두 입력해 주세요.";status.style.display="block";return false;}
+  status.style.display="none";
+  return true;
 }
-$("sendButton").addEventListener("click",function(){
- if(!validate())return;
- const body=encodeURIComponent(makeOrderText());
- const isApple=/iPhone|iPad|iPod/i.test(navigator.userAgent||"");
- const separator=isApple?"&":"?";
- window.location.href="sms:"+SMS_NUMBER+separator+"body="+body;
+document.getElementById("smsBtn").addEventListener("click",()=>{
+  if(!validate()) return;
+  const body=encodeURIComponent(orderText());
+  const isApple=/iPhone|iPad|iPod/i.test(navigator.userAgent||"");
+  const separator=isApple?"&":"?";
+  window.location.href="sms:"+SMS_NUMBER+separator+"body="+body;
 });
-$("copyButton").addEventListener("click",async function(){
- if(!validate())return;
- const text=makeOrderText();
- try{
-  await navigator.clipboard.writeText(text);
-  alert("주문 내용이 복사됐습니다. 문자 앱에 붙여넣어 보내주세요.");
- }catch(err){
-  const area=document.createElement("textarea");area.value=text;
-  area.style.position="fixed";area.style.left="-9999px";
-  document.body.appendChild(area);area.select();
-  let ok=false;try{ok=document.execCommand("copy");}catch(e){}
-  area.remove();
-  alert(ok?"주문 내용이 복사됐습니다. 문자 앱에 붙여넣어 보내주세요.":"자동 복사가 제한됐습니다. 문자 버튼을 이용해 주세요.");
- }
+document.getElementById("copyBtn").addEventListener("click",async()=>{
+  if(!validate()) return;
+  const status=document.getElementById("status");
+  try{
+    await navigator.clipboard.writeText(orderText());
+    status.textContent="주문 내용이 복사됐어요. 문자 앱에 붙여넣어 보내 주세요.";
+  }catch(e){
+    const ta=document.createElement("textarea");
+    ta.value=orderText();document.body.appendChild(ta);ta.select();
+    const ok=document.execCommand("copy");ta.remove();
+    status.textContent=ok?"주문 내용이 복사됐어요. 문자 앱에 붙여넣어 보내 주세요.":"복사에 실패했어요. 주문 문자 작성하기를 이용해 주세요.";
+  }
+  status.style.display="block";
 });
-update();
-})();
+refresh();
 </script>
 </body>
 </html>
